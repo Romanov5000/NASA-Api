@@ -1,25 +1,16 @@
 import React from "react";
+import Header from '../Header';
 import DataPicture from "../DataPicture";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+
+import Css from "./App.module.css";
 
 export default class App extends React.Component {
 
-  state = {
-    //apod: [],
-    date: new Date(),
-  };
-
-  onChange = (date) => this.setState({ date });
-
   render() {
-    const { date } = this.state;
-    console.log(date);
     return (
-      <div className="App">
-        <DataPicture
-        date={date}/>
-        <Calendar onChange={this.onChange} value={this.state.date} />
+      <div className={Css.App}>
+        <Header/>
+        <DataPicture />
       </div>
     );
   }
