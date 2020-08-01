@@ -6,26 +6,25 @@ import Css from "./DataPicture.module.css";
 export default class DataPicture extends React.Component {
   state = {
     apod: [],
-    date: new Date(),
+    date: new Date(localStorage.getItem("date") || Date.now()),
   };
 
-  onChange = (date) => this.setState({ date });
+  onChange = (date) => {
+    this.getDataApod(date).then((apod) => this.setState({ apod, date }));
+    this.setState({ date });
+    localStorage.setItem("date", date);
+  };
 
-  getDataApod = async () => {
-    const { date } = this.state;
-    console.log(date.getFullYear());
-    console.log(date.getMonth());
-    console.log(date.getDate());
-
+  getDataApod = async (date) => {
     let response = await fetch(
-      `https://api.nasa.gov/planetary/apod?date=${date.getFullYear() -3}-${date.getDate()}-${date.getMonth()}&api_key=sN29cs6UI3whG6kqPwyBSu5HqYD2edaJu8QEnaba`
+      `https://api.nasa.gov/planetary/apod?date=${date.getFullYear()}-${date.getMonth()}-${date.getDate()}&api_key=sN29cs6UI3whG6kqPwyBSu5HqYD2edaJu8QEnaba`
     );
     let result = await response.json();
     return result;
   };
 
   componentDidMount() {
-    this.getDataApod().then((result) =>
+    this.getDataApod(this.state.date).then((result) =>
       this.setState({
         apod: result,
       })
@@ -33,8 +32,7 @@ export default class DataPicture extends React.Component {
   }
 
   render() {
-    const { apod, date } = this.state;
-    console.log(date);
+    const { apod } = this.state;
     return (
       <div className={Css.DataPicture}>
         <div className={Css.calendarBlock}>
@@ -44,7 +42,7 @@ export default class DataPicture extends React.Component {
             value={this.state.date}
           />
           <div>
-              <h2>Explanation</h2>
+            <h2>Explanation</h2>
             <p>{apod.explanation}</p>
           </div>
         </div>

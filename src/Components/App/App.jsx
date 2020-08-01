@@ -4,9 +4,8 @@ import DataPicture from "../DataPicture";
 
 import Css from "./App.module.css";
 
-export default class App extends React.Component {
+function App () {
 
-  render() {
     return (
       <div className={Css.App}>
         <Header/>
@@ -14,4 +13,5 @@ export default class App extends React.Component {
       </div>
     );
   }
-}
+
+export default App;

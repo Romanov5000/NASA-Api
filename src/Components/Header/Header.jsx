@@ -6,7 +6,7 @@ function Header() {
     <div className={Css.Header}>
       <h1>
         Hello, My name`s Romanov Vlad. <br />
-        It`s my test progect
+        It`s my test project
       </h1>
     </div>
   );
