@@ -11,7 +11,6 @@ export default class DataPicture extends React.Component {
 
   onChange = (date) => {
     this.getDataApod(date).then((apod) => this.setState({ apod, date }));
-    this.setState({ date });
     localStorage.setItem("date", date);
   };
 
@@ -32,14 +31,14 @@ export default class DataPicture extends React.Component {
   }
 
   render() {
-    const { apod } = this.state;
+    const { apod, date } = this.state;
     return (
       <div className={Css.DataPicture}>
         <div className={Css.calendarBlock}>
           <Calendar
             className={Css.calendare}
             onChange={this.onChange}
-            value={this.state.date}
+            value={date}
           />
           <div>
             <h2>Explanation</h2>
