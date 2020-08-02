@@ -7,4 +7,4 @@
 ***
 
 ###### Пример работы приложения.
-
+https://www.screencast.com/t/YXLNP7KE
