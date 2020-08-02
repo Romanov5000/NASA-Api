@@ -6,7 +6,7 @@ import Css from "./DataPicture.module.css";
 export default class DataPicture extends React.Component {
   state = {
     apod: [],
-    date: new Date (localStorage.getItem("date") || Date.now()),
+    date: new Date(localStorage.getItem("date") || Date.now()),
   };
 
   onChange = (date) => {
